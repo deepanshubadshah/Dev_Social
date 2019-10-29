@@ -1492,7 +1492,7 @@ a.article-title:hover {
 }
 
 textarea#id_content {
-  width: 406px;
+  width: 500px;
   height: 40px;
   -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -1505,4 +1505,22 @@ float:left;margin:0;
 
 .reply_sty{
   display: none;
+}
+
+.btn-sm{
+  font-size: .750rem;
+}
+
+.like-content-section {
+    background: #ffffff;
+    padding: 5px 20px;
+    padding-bottom: 0px;
+    border: 0.5px solid #dddddd;
+}
+
+.detail-content-section{
+  background: #ffffff;
+  padding: 10px 20px;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
 }
