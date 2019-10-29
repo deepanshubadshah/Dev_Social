@@ -67,10 +67,10 @@
               <li class="list-group-item list-group-item-light" >
                 {% if notification.post.author.profile.name != "Users name" %}
                   <a href="{% url 'user-posts' notification.post.author.username %}">{{ notification.post.author.profile.name|slice:":35" }}</a>
-                   Posted <a href="{% url 'post-detail' notification.post.id %}">{{ notification.post.title|slice:":38" }}...</a></li>
+                   posted <a href="{% url 'post-detail' notification.post.id %}">{{ notification.post.title|slice:":38" }}...</a></li>
                  {% else %}
                    <a href="{% url 'user-posts' notification.post.author.username %}">{{ notification.post.author.username|slice:":35" }}</a>
-                    Posted <a href="{% url 'post-detail' notification.post.id %}">{{ notification.post.title|slice:":38" }}...</a></li>
+                    posted <a href="{% url 'post-detail' notification.post.id %}">{{ notification.post.title|slice:":38" }}...</a></li>
                  {% endif %}
               {% endfor %}
             </ul>

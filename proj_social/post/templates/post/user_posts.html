@@ -1,16 +1,16 @@
 {% extends "post/base.html" %}
 {% block content %}
 
-<!-- User info -->
+<!-- userp info -->
   <div class="content-section">
     <div class="media">
-      <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+      <img class="rounded-circle account-img" src="{{ userp.profile.image.url }}">
       <div class="col-md-12">
         <div class="media-body col-md-12">
-          <h4 class="account-heading"><small>{{ user.profile.name }}</small></h4>
+          <h4 class="account-heading"><small>{{ userp.profile.name }}</small></h4>
 
-          <p class="text-secondary">Username: {{ user.username }}</p>
-          <p class="text-secondary">Email: {{ user.email }}</p>
+          <p class="text-secondary">Username: {{ userp.username }}</p>
+          <p class="text-secondary">Email: {{ userp.email }}</p>
         </div>
         <div class="col-md-12">
           <h5>Posts:{{ posts|length }}</h5>

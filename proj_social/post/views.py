@@ -32,12 +32,14 @@ def PostListView(request):
 
 
 def UserPostListView(request, username):
-    user = get_object_or_404(User, username=username)
+    userp = get_object_or_404(User, username=username)
     paginate_by = 5
-    posts = Post.objects.filter(author=user).order_by('-date_posted')
+    posts = Post.objects.filter(author=userp).order_by('-date_posted')
+    notifications = Notification.objects.order_by('-id')[:5]
     context = {
         'posts': posts,
-        'user':user
+        'userp':userp,
+        'notifications':notifications
         }
     return render(request, 'post/user_posts.html', context)
 
@@ -45,6 +47,7 @@ def UserPostListView(request, username):
 def PostDetailView(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comments = Comment.objects.filter(post=post, reply=None).order_by('-id')
+    notifications = Notification.objects.order_by('-id')[:5]
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST or None)
@@ -64,6 +67,7 @@ def PostDetailView(request, pk):
         'post': post,
         'comments': comments,
         'comment_form': comment_form,
+        'notifications':notifications
         }
     if request.is_ajax():
         html = render_to_string('post/comments.html', context, request=request)

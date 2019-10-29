@@ -9,7 +9,7 @@
           {% if request.user.is_authenticated %}
             <input type="submit" value="Submit" class="btn btn-sm btn-outline-info btsty">
           {% else %}
-            <input type="submit" value="Submit" class="btn btn-sm btn-outline-info btsty" disabled>
+            <input type="submit" value="Submit" class="btn btn-sm btn-outline-info btsty" disabled><a class="ml-2" href="{% url 'login' %}" style="font-size:12px;">Login to comment</a>
           {% endif %}
         </div>
     </form>
@@ -44,7 +44,7 @@
           {% if request.user.is_authenticated %}
             <input type="submit" value="Submit" class="btn btn-sm btn-outline-info btsty">
           {% else %}
-            <input type="submit" value="Submit" class="btn btn-sm btn-outline-info btsty" disabled>
+            <input type="submit" value="Submit" class="btn btn-sm btn-outline-info btsty" disabled><a class="ml-2" href="{% url 'login' %}" style="font-size:12px;">Login to comment</a>
           {% endif %}
         </div>
     </form>
