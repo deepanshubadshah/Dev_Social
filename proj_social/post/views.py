@@ -48,6 +48,9 @@ def PostDetailView(request, pk):
     post = get_object_or_404(Post, pk=pk)
     comments = Comment.objects.filter(post=post, reply=None).order_by('-id')
     notifications = Notification.objects.order_by('-id')[:5]
+    is_liked=False
+    if post.likes.filter(id=request.user.id).exists():
+        is_liked = True
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST or None)
@@ -67,13 +70,38 @@ def PostDetailView(request, pk):
         'post': post,
         'comments': comments,
         'comment_form': comment_form,
-        'notifications':notifications
+        'is_liked': is_liked,
+        'notifications': notifications,
+        'total_likes': post.total_likes(),
         }
     if request.is_ajax():
         html = render_to_string('post/comments.html', context, request=request)
         return JsonResponse({'form':html})
 
     return render(request, 'post/post_detail.html', context)
+
+
+def like_post(request):
+    post = get_object_or_404(Post, id=request.POST.get('id'))
+    notifications = Notification.objects.order_by('-id')[:5]
+    is_liked = False
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+        is_liked = False
+    else:
+        post.likes.add(request.user)
+        is_liked = True
+
+    context = {
+        'post': post,
+        'is_liked': is_liked,
+        'notifications': notifications,
+        'total_likes': post.total_likes(),
+    }
+    if request.is_ajax():
+        html = render_to_string('post/likes.html', context, request=request)
+        return JsonResponse({'form':html})
+
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -92,7 +120,6 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
-
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):

@@ -1,0 +1,17 @@
+<article class="media like-content-section">
+  <div class="row ml-3">
+    <form action="{% url 'like_post' %}" method="post">
+      {% csrf_token %}
+      {% if request.user.is_authenticated %}
+        {% if is_liked %}
+          <button type="submit" id="like" name="post_id" value="{{ post.id }}" class="btn btn-sm btn-outline-danger">Dislike <i class="fa fa-thumbs-down"></i></button>
+        {% else %}
+          <button type="submit" id="like" name="post_id" value="{{ post.id }}" class="btn btn-sm btn-outline-primary">Like <i class="fa fa-thumbs-up"></i></button>
+        {% endif %}
+      {% else %}
+          <button type="submit" id="like" name="post_id" value="{{ post.id }}" class="btn btn-sm btn-outline-primary" disabled>Like <i class="fa fa-thumbs-up"></i></button>
+      {% endif %}
+    </form>
+    <p class="ml-3">{{ total_likes }} Like{{ total_likes|pluralize }}</p>
+  </div>
+</article>
