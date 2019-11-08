@@ -1,0 +1,9 @@
+{% if users_list.count > 0 %}
+
+{% for p_user in users_list %}
+  <li class="list-group-item list-group-item-light" >
+    <a class="mr-2" href="{% url 'user-posts' p_user.username %}">{{ p_user.username }}</a>
+  </li>
+{% endfor %}
+
+{% endif %}

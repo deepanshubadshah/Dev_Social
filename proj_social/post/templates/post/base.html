@@ -46,9 +46,22 @@
     </nav>
   </header>
 
-  <main role="main" class="container">
+  <main role="main" class="container col-lg-12">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-lg-3 div1">
+        <div class="content-section">
+          <p class='text-muted'>Find people to make connections</p>
+
+          {% csrf_token %}
+          <input type="text" id="search" name="search" />
+
+          <ul class="list-group" id="search-results">
+
+          </ul>
+
+        </div>
+      </div>
+      <div class="col-lg-6 div2">
         {% if messages %}
           {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">
@@ -58,10 +71,10 @@
         {% endif %}
         {% block content %}{% endblock %}
       </div>
-      <div class="col-md-4">
+      <div class="col-lg-3 div3">
         <div class="content-section">
           <h3>Notifier</h3>
-          <p class='text-muted'>See what other developers are posting.
+          <p class='text-muted'>See what other developers are posting.</p>
             <ul class="list-group">
               {% for notification in notifications %}
               <li class="list-group-item list-group-item-light" >
@@ -74,7 +87,6 @@
                  {% endif %}
               {% endfor %}
             </ul>
-          </p>
         </div>
       </div>
     </div>
@@ -156,6 +168,30 @@
           },
         });
       });
+
+      $(function(){
+
+        $('#search').keyup(function(){
+
+          $.ajax({
+            type: 'POST',
+            url: '{% url "search_user" %}',
+            data: {
+              'search_text' : $('#search').val(),
+              'csrfmiddlewaretoken' : $("input[name=csrfmiddlewaretoken]").val()
+            },
+            success: searchSuccess,
+            dataType: 'html',
+            error: function(rs, e) {
+              console.log(rs.responseText);
+            },
+          });
+        });
+      });
+
+      function searchSuccess(data, textStatus, jqXHR){
+        $('#search-results').html(data);
+      }
 
     </script>
 
