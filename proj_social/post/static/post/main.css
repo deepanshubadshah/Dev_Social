@@ -1524,3 +1524,27 @@ float:left;margin:0;
   border: 1px solid #dddddd;
   border-radius: 3px;
 }
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.div1 {
+
+}
+
+.div2 {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.div3 {
+
+}
+
+.article-content {
+  color: #5a5757;
+}

@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from django.contrib.auth.models import User
 
 def register(request):
     if request.method == 'POST':
@@ -14,6 +15,18 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
+
+def search_user(request):
+    if request.method == "POST":
+        search_text = request.POST['search_text']
+    else:
+        search_text = ''
+
+    users_list = User.objects.filter(username__contains=search_text)
+
+    return render_to_response('users/profile_search.html', {'users_list' : users_list})
+
+
 
 @login_required
 def profile(request):
