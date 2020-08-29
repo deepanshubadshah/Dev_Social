@@ -1,0 +1,17 @@
+<form class="send_connect" action="." method="post">
+  {% csrf_token %}
+  {% if request.user.is_authenticated %}
+      {% if is_friend and newuser_sent %}
+          <p class="text-success" >Friends!</p>
+      {% else %}
+          {% if is_sent %}
+          <a href="{% url 'send_connect' operation='remove' pk=userp.pk %}" class="btn btn-outline-secondary btn-sm" href="#">Remove connection</a>
+            <!-- <p class="text-success" >Request sent! </p> -->
+          {% else %}
+            <a href="{% url 'send_connect' operation='add' pk=userp.pk %}"><button type="button" class="btn btn-primary con_btn">Connect</button></a>
+          {% endif %}
+      {% endif %}
+  {% else %}
+      <button type="submit" id="send_connect" name="sent_to_id" value="{{ userp.id }}" class="btn btn-primary con_btn" disabled>Connect</button>
+  {% endif %}
+</form>

@@ -1,0 +1,9 @@
+{ 
+ "SECRET_KEY": "3hi=%7(74*5bq53ex%e1d(^)qt58f2l%9s4-*mqukhoy5ld_tz",
+ "EMAIL_USER": "badshahdeepanshu@gmail.com",
+ "EMAIL_PASS": "dojlpvuhgjtzlnho",
+ "AWS_ACCESS_KEY_ID": "AKIATQSFBVISTXNB4NQR",
+ "AWS_SECRET_ACCESS_KEY": "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",
+ "AWS_STORAGE_BUCKET_NAME": "devsoc"
+}
+

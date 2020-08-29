@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from .forms import *
 from django.template.loader import render_to_string
 from django.http import JsonResponse
+from users.models import Friend
 
 def home(request):
     context = {
@@ -36,10 +37,26 @@ def UserPostListView(request, username):
     paginate_by = 5
     posts = Post.objects.filter(author=userp).order_by('-date_posted')
     notifications = Notification.objects.order_by('-id')[:5]
+    obj_exist = Friend.objects.filter(current_user=userp).exists()
+    if obj_exist:
+        user_connections = Friend.objects.get(current_user=userp)
+        newuser_sent = user_connections.users.filter(username=request.user.username).exists()
+    else:
+        newuser_sent = False
+
+    sent_requests_c = Friend.objects.filter(current_user=request.user.id).exists()
+    if sent_requests_c:
+        sent_requests = Friend.objects.get(current_user=request.user.id)
+        is_sent = sent_requests.users.filter(username=username).exists()
+    else:
+        is_sent = False
+
     context = {
         'posts': posts,
         'userp':userp,
-        'notifications':notifications
+        'notifications':notifications,
+        'is_sent': is_sent,
+        'newuser_sent': newuser_sent,
         }
     return render(request, 'post/user_posts.html', context)
 
