@@ -1,8 +1,10 @@
 {% if users_list.count > 0 %}
 
-{% for p_user in users_list %}
+{% for userp in users_list %}
   <li class="list-group-item list-group-item-light" >
-    <a class="mr-2" href="{% url 'user-posts' p_user.username %}">{{ p_user.username }}</a>
+    <img class="rounded-circle search-img" src="{{ userp.profile.image.url }}" >
+    <p class="pro_sear">{{ userp.profile.name }}</p>
+    <a class="mr-2" href="{% url 'user-posts' userp.username %}">{{ userp.username }}</a>
   </li>
 {% endfor %}
 

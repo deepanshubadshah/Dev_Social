@@ -83,11 +83,34 @@ a.article-title:hover {
   font-size: 2.5rem;
 }
 
+.connection-img {
+  height: 90px;
+  width: 90px;
+  margin-right: 20px;
+  margin-bottom: 15px;
+}
+
+.connection-heading {
+  font-size: 2.0rem;
+}
+
 .article-img-change {
     height: 18px;
     width: 18px;
     float: right;
     margin-right: 5px;
+}
+
+.search-img{
+  height: 30px;
+  width: 30px;
+  float: left;
+  margin-right: 7px;
+}
+
+.pro_sear{
+  margin-top: -4px;
+  margin-bottom: -0.5rem;
 }
 
 .article-metadata {
@@ -100,10 +123,12 @@ a.article-title:hover {
   float:right;
 }
 
-
-
 .align-center, .center {
     text-align: center!important;
+}
+
+.noti-sty{
+    font-size: 0.86rem;
 }
 
 .profile-user-info {
@@ -447,7 +472,7 @@ a.article-title:hover {
 
 @media only screen and (max-width:480px) {
     .profile-info-name {
-        width: 80px
+        width: 100%;
     }
     .profile-user-info-striped .profile-info-name {
         float: none;
@@ -1548,3 +1573,75 @@ float:left;margin:0;
 .article-content {
   color: #5a5757;
 }
+
+.con_btn{
+  padding: .15rem .60rem;
+  font-size: 1.05rem;
+  border-radius: .20rem;
+  font-weight: 540;
+  background-color: #376c92;
+  border-color: #376c92;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1.5;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  color: white;
+}
+.con_btn:hover {
+  background-color: #295371;
+  border-color: #295371;
+}
+
+.msg_btn{
+  font-size: 0.93rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  margin-top: 0%;
+  margin-left: -20%;
+}
+
+.text-muted {
+    color: #36393c!important;
+}
+
+.media-body {
+  width: 86%;
+}
+
+.dropdown-menu{
+  font-size: 0.75rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+}
+
+.cusbtn{
+  font-size: .6rem;
+  margin-top: 5%;
+  margin-right: 5%;
+  color: #b3aaaa;
+}
+
+.infofnt1{
+  font-size: 0.9rem;
+}
+
+.infofnt2{
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+.csec{
+  margin-bottom: 5px;
+  padding-right: 1%;
+  padding-bottom: 1%;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.alert {
+    text-align: center;
+    padding: .1rem 1.25rem;
+    font-size: 0.87rem;
+  }
