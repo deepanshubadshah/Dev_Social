@@ -97,7 +97,7 @@ def PostDetailView(request, pk):
 
     return render(request, 'post/post_detail.html', context)
 
-
+#post detail page like option
 def like_post(request):
     post = get_object_or_404(Post, id=request.POST.get('id'))
     notifications = Notification.objects.order_by('-id')[:5]
@@ -117,6 +117,40 @@ def like_post(request):
     }
     if request.is_ajax():
         html = render_to_string('post/likes.html', context, request=request)
+        return JsonResponse({'form':html})
+
+#main page like option
+def mlike_post(request):
+    post = get_object_or_404(Post, id=request.POST.get('id'))
+    notifications = Notification.objects.order_by('-id')[:5]
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    context = {
+        'post': post,
+        'notifications': notifications
+        }
+    if request.is_ajax():
+        html = render_to_string('post/mlikes.html', context, request=request)
+        return JsonResponse({'form':html})
+
+#profile page like option
+def plike_post(request):
+    post = get_object_or_404(Post, id=request.POST.get('id'))
+    notifications = Notification.objects.order_by('-id')[:5]
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    context = {
+        'post': post,
+        'notifications': notifications
+        }
+    if request.is_ajax():
+        html = render_to_string('post/plikes.html', context, request=request)
         return JsonResponse({'form':html})
 
 

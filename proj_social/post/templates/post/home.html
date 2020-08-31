@@ -1,7 +1,7 @@
 {% extends "post/base.html" %}
 {% block content %}
   {% for post in posts %}
-  <article class="media content-section">
+  <article class="media detail-content-section">
     <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" >
     <div class="media-body" >
       <div class="article-metadata">
@@ -12,6 +12,10 @@
       <p class="article-content">{{ post.content }}</p>
     </div>
   </article>
+
+  <div  style="margin-bottom:2%;" id="mlike-part{{ post.id }}">
+    {% include 'post/mlikes.html' %}
+  </div>
 
   {% endfor %}
 

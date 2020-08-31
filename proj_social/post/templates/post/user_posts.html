@@ -29,7 +29,7 @@
 <!-- User posts -->
   {% for post in posts %}
 
-  <article class="media content-section">
+  <article class="media detail-content-section">
     <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" >
     <div class="media-body">
       <div class="article-metadata">
@@ -41,6 +41,9 @@
     </div>
   </article>
 
+  <div  style="margin-bottom:2%;" id="plike-part{{ post.id }}">
+    {% include 'post/plikes.html' %}
+  </div>
 
 <!-- Pagination -->
   {% endfor %}

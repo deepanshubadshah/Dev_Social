@@ -1,0 +1,26 @@
+<article class="media like-content-section">
+  <div class="row ml-3">
+    <form action="{% url 'plike_post' %}" method="post">
+      {% csrf_token %}
+      {% if request.user.is_authenticated %}
+        {% if request.user in post.likes.all %}
+          <button type="submit" id="plike" name="post_id" value="{{ post.id }}" class="btn btn-sm btn-primary">Liked <i class="fa fa-thumbs-up"></i></button>
+        {% else %}
+          <button type="submit" id="plike" name="post_id" value="{{ post.id }}" class="btn btn-sm btn-outline-primary">Like <i class="fa fa-thumbs-up"></i></button>
+        {% endif %}
+      {% else %}
+          <button type="submit" id="plike" name="post_id" value="{{ post.id }}" class="btn btn-sm btn-outline-primary" disabled>Like <i class="fa fa-thumbs-up"></i></button>
+      {% endif %}
+    </form>
+
+    {% if post.likes.count > 0 %}
+    <p class="ml-3">{{ post.likes.count }} Like{{ post.likes.count |pluralize }}</p>
+    {% else %}
+    <p>.</p>
+    {% endif %}
+
+  </div>
+  <div style="width:57%" >
+    <a class="article-title des"  href="{% url 'post-detail' post.id %}"><i class='far fa-comment-alt'></i> Comment</a>
+  </div>
+</article>

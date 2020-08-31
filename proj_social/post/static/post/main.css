@@ -1548,6 +1548,7 @@ float:left;margin:0;
   padding: 10px 20px;
   border: 1px solid #dddddd;
   border-radius: 3px;
+  margin-bottom: -2px;
 }
 
 .container {
@@ -1645,3 +1646,7 @@ float:left;margin:0;
     padding: .1rem 1.25rem;
     font-size: 0.87rem;
   }
+
+.des{
+  float:right;color:#007bff;
+}

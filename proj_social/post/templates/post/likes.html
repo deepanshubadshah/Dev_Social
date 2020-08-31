@@ -4,7 +4,7 @@
       {% csrf_token %}
       {% if request.user.is_authenticated %}
         {% if is_liked %}
-          <button type="submit" id="like" name="post_id" value="{{ post.id }}" class="btn btn-sm btn-outline-danger">Dislike <i class="fa fa-thumbs-down"></i></button>
+          <button type="submit" id="like" name="post_id" value="{{ post.id }}" class="btn btn-sm btn-primary">Liked <i class="fa fa-thumbs-up"></i></button>
         {% else %}
           <button type="submit" id="like" name="post_id" value="{{ post.id }}" class="btn btn-sm btn-outline-primary">Like <i class="fa fa-thumbs-up"></i></button>
         {% endif %}
